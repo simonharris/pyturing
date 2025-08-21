@@ -1,5 +1,5 @@
 from collections import defaultdict
-
+from dataclasses import dataclass
 
 class Tape(defaultdict):
 
@@ -24,3 +24,20 @@ class Head():
 
     def write(self, value):
         self.tape[self.ctr] = value
+
+
+@dataclass
+class Instruction():
+
+    next: str
+    write: int
+    move: str
+
+    def next_state(self) -> str:
+        return self.next
+
+    def to_write(self) -> int:
+        return self.write
+
+    def next_move(self) -> str:
+        return self.move
