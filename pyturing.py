@@ -27,7 +27,7 @@ class Head():
 
 
 @dataclass
-class Instruction():
+class Transition():
 
     next: str
     write: int
