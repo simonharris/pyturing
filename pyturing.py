@@ -6,8 +6,11 @@ from dataclasses import dataclass
 
 class Tape(defaultdict):
 
-    def __init__(self):
-        super().__init__(lambda: '')
+    def __init__(self, initial:str = ''):
+        super().__init__(str)
+
+    def populate(self, input:str):
+        self.update(enumerate(input))
 
 
 class Head():
