@@ -1,0 +1,15 @@
+{
+  "states": ["increment", "HALT"],
+  "initialState": "increment",
+  "transitions": {
+    "increment": {
+      "_": {
+        "next": "HALT",
+        "write": "1"
+      },
+      "1": {
+        "move": "R"
+      }
+    }
+  }
+}
