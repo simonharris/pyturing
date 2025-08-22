@@ -30,14 +30,28 @@ class Head():
 class Transition():
 
     next: str
-    write: int
+    write: str
     move: str
 
     def next_state(self) -> str:
         return self.next
 
-    def to_write(self) -> int:
+    def to_write(self) -> str:
         return self.write
 
     def next_move(self) -> str:
         return self.move
+
+
+class Program():
+
+    def __init__(self, data):
+        self.initial_state = data['initialState']
+        self.transitions = data['transitions']
+
+    def get_initial_state(self):
+        return self.initial_state
+
+    def get_transition(self, state: str, readval: str) -> Transition:
+        return Transition(**self.transitions[state][readval])
+

@@ -1,0 +1,30 @@
+{
+  "states": ["state0012", "state0042"],
+  "initialState": "state0012",
+  "transitions": {
+    "state0012": {
+      "0": {
+        "next": "state0042",
+        "write": 1,
+        "move": "R"
+      },
+      "1": {
+        "next": "state0012",
+        "write": 0,
+        "move": "L"
+      }
+    },
+    "state0042": {
+      "0": {
+        "next": "state0042",
+        "write": 1,
+        "move": "R"
+      },
+      "1": {
+        "next": "state0012",
+        "write": 0,
+        "move": "L"
+      }
+    }
+  }
+}
