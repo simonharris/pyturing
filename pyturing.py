@@ -18,7 +18,7 @@ class Tape(defaultdict):
         self.update(enumerate(input))
 
     def __str__(self):
-        return ''.join(self.values())
+        return ''.join(self.values()).strip(CELL_BLANK)
 
 
 class Head():

@@ -1,0 +1,31 @@
+{
+  "states": ["first", "second", "total", "HALT"],
+  "initialState": "first",
+  "transitions": {
+    "first": {
+      "1": {
+        "move": "R"
+      },
+      "_": {
+        "next": "second",
+        "write": "1",
+        "move": "R"
+      }
+    },
+    "second": {
+      "1": {
+        "move": "R"
+      },
+      "_": {
+        "next": "total",
+        "move": "L"
+      }
+    },
+    "total": {
+      "1": {
+        "write": "_",
+        "next": "HALT"
+      }
+    }
+  }
+}
