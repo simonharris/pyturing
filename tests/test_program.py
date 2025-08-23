@@ -22,5 +22,3 @@ class TestProgram:
         assert tr.next_state() == 'state0012'
         assert tr.to_write() == '0'
         assert tr.next_move() == 'L'
-
-# TODO: what if no istruction for a state/read combination?

@@ -4,13 +4,21 @@ from collections import defaultdict
 from dataclasses import dataclass
 
 
+STATE_HALT = 'HALT'
+CELL_BLANK = '_'
+
+
 class Tape(defaultdict):
 
     def __init__(self, initial:str = ''):
-        super().__init__(str)
+        super().__init__(lambda: '_')
+        self.populate(initial)
 
     def populate(self, input:str):
         self.update(enumerate(input))
+
+    def __str__(self):
+        return ''.join(self.values())
 
 
 class Head():
@@ -35,9 +43,9 @@ class Head():
 @dataclass
 class Transition():
 
-    next: str
-    write: str
-    move: str
+    next: str = None
+    write: str = None
+    move: str = None
 
     def next_state(self) -> str:
         return self.next
@@ -66,6 +74,7 @@ class Machine():
 
     def __init__(self, head: Head):
         self.head = head
+        self.state = STATE_HALT
 
     def load(self, program: Program):
         self.program = program
@@ -77,10 +86,21 @@ class Machine():
     def step(self):
         input = self.head.read()
         tr = self.program.get_transition(self.state, input)
-        self.head.write(tr.to_write())
-        self.state = tr.next_state()
+
+        if write := tr.to_write():
+            self.head.write(write)
+
+        if state := tr.next_state():
+            self.state = state
 
         if tr.next_move() == 'R':
             self.head.move_right()
         elif tr.next_move() == 'L':
             self.head.move_left()
+
+    def run(self):
+        while self.state != STATE_HALT:
+            self.step()
+
+    def get_tape(self):
+        return self.head.tape

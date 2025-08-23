@@ -10,3 +10,13 @@ class TestTransition:
         assert(inst.next_state() == 's00012')
         assert(inst.to_write() == 1)
         assert(inst.next_move() == 'R')
+
+
+    def test_defaults(self):
+
+        spec = {}
+
+        inst = Transition(**spec)
+        assert(inst.next_state() == None)
+        assert(inst.to_write() == None)
+        assert(inst.next_move() == None)
